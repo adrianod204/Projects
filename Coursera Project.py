@@ -111,7 +111,7 @@ ax = sbn.barplot(
     y="rating",
     data=df,
     palette="PuBuGn_r",
-    hue='keyword',
+    hue="keyword",
     legend=False,
 )
 
