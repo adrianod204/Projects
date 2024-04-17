@@ -23,14 +23,11 @@ df1.to_csv("ReactionTypes_Cleaned.csv")
 df2.drop_duplicates(inplace=True)
 df2.dropna(inplace=True)
 print(df2.info())
-# Dropping unneccessary "datetime" column
-
-df2_clean = df2.drop(columns=["Datetime"], axis=1)
-print(df2_clean.info())
 
 # Writing to .csv file
 
-df2_clean.to_csv("Reactions_Cleaned.csv")
+df2.to_csv("Reactions_Cleaned.csv")
+
 
 
 # Cleaning Content dataset
@@ -43,7 +40,11 @@ print(df3.info())
 df3.drop(["URL"], axis=1, inplace=True)
 # print(df3.info())
 
-# Replacing misnamed values
+# Renaming column "Type" to "Content Type" for specificity
+
+df3.rename(columns={"Type": "Content Type"}, inplace=True)
+
+# Stripping quotation marks "Category" values and standardizing capitalization
 df3["Category"] = df3["Category"].str.strip('""')
 df3["Category"] = df3["Category"].str.lower()
 print(df3.iloc[:, 3].unique())
